@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+**Atomic Design** é uma metodologia desenvolvida por **Brad Frost** e segue uma ideia de que interfaces podem ser quebradas em elementos fundamentais e recombinados para formar estruturas mais complexas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para conseguir aplicar Atomic Design da forma correta, você precisa entender como funciona a separação de **átomos**, **moléculas** e **organismos**.
 
-Currently, two official plugins are available:
+## Átomos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+São componentes primitivos que não contém dependência de outros componentes.
+</br>
 
-## Expanding the ESLint configuration
+### Exemplo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```jsx
+export const Image = (props: ImageProps) => {
+  return <img className={props.className} src={props.src} alt={props.alt} />;
+};
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Moléculas
+
+São componentes que contém dependência de ao menos um átomo.
+
+### Exemplo
+
+```jsx
+import { Image } from '@/components/atoms/Image';
+import { Button } from '@/components/atoms/Button';
+
+export const Thumbnail = (props: ThumbnailProps) => {
+  return (
+    <div>
+      <Image src={props.imageURL} alt={props.description} />
+
+      <Button onClick={props.onClickPlayButton}>Play</Button>
+    </div>
+  );
+};
+```
+
+## Organismo
+
+São componentes que contém dependência de ao menos uma molécula.
+
+### Exemplo
+
+```jsx
+import { Video } from '@/components/atoms/Video';
+import { Thumbnail } from '@/components/molecules/Thumbnail';
+
+export const VideoThumbnail = (props: VideoThumbnailProps) => {
+  const [isPlayingVideo, setIsPlayingVideo] = useState(false);
+
+  if (isPlayingVideo) {
+    return <Video />;
+  }
+
+  return <Thumbnail />;
+};
+```
+
+<br />
+
+Ao entender como funciona essa separação é possível ver os ganhos ao aplicar Atomic Design em seus componentes.
+
+Atomic Design faz você pensar mais no **design (modelagem)** dos componentes para que você não ultrapasse os limites de átomos, moléculas e organismos, como criar um átomo contendo uma dependência ou um organismo como sendo uma molécula.
+
+Essas restrições geram componentes pequenos, reutilizáveis e fácil de testar.
+
+<img src="https://sa-east-1.graphassets.com/clvfs1ld70bcs07ke07bkdxol/clxcfha33086207lv0j1wex8v" alt="Code Challenges" />

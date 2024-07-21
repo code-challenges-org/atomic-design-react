@@ -1,3 +1,9 @@
+<div align="center">
+  <img width="280px" src="https://sa-east-1.graphassets.com/clvfs1ld70bcs07ke07bkdxol/clxcfha33086207lv0j1wex8v" alt="Code Challenges" />
+</div>
+
+</br>
+
 **Atomic Design** é uma metodologia desenvolvida por **Brad Frost** e segue uma ideia de que interfaces podem ser quebradas em elementos fundamentais e recombinados para formar estruturas mais complexas.
 
 Para conseguir aplicar Atomic Design da forma correta, você precisa entender como funciona a separação de **átomos**, **moléculas** e **organismos**.
@@ -65,4 +71,3 @@ Atomic Design faz você pensar mais no **design (modelagem)** dos componentes pa
 
 Essas restrições geram componentes pequenos, reutilizáveis e fácil de testar.
 
-<img src="https://sa-east-1.graphassets.com/clvfs1ld70bcs07ke07bkdxol/clxcfha33086207lv0j1wex8v" alt="Code Challenges" />

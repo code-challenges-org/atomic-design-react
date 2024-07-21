@@ -1,7 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 
-import { VideoTestIDs } from '@/components/atoms/Video/Video.test';
-
 import { VideoThumbnail, VideoThumbnailProps } from '.';
 
 const mock: VideoThumbnailProps = {
@@ -9,6 +7,10 @@ const mock: VideoThumbnailProps = {
   description: 'Loren ipsum dolor',
   videoURL: 'https://www.cdn.com/video.mp4',
 };
+
+jest.mock('@/components/atoms/Video', () => ({
+  Video: () => <div data-testid="mock-video" />,
+}));
 
 const { getByRole, getByTestId } = screen;
 
@@ -29,7 +31,7 @@ describe('<VideoThumbnail />', () => {
     fireEvent.click(button);
 
     act(() => {
-      const video = getByTestId(VideoTestIDs.VIDEO);
+      const video = getByTestId('mock-video');
 
       expect(video).toBeInTheDocument();
     });

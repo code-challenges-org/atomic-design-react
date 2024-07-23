@@ -67,7 +67,7 @@ export const VideoThumbnail = (props: VideoThumbnailProps) => {
 
 Ao entender como funciona essa separação é possível ver os ganhos ao aplicar Atomic Design em seus componentes.
 
-Atomic Design faz você pensar mais no **design (modelagem)** dos componentes para que você não ultrapasse os limites de átomos, moléculas e organismos, como criar um átomo contendo uma dependência ou um organismo como sendo uma molécula.
+Atomic Design faz você pensar mais no **design (modelagem)** dos componentes para que você não ultrapasse os limites de átomos, moléculas e organismos, como criar um átomo contendo um componente como dependência ou um organismo como sendo uma molécula.
 
 Essas restrições geram componentes pequenos, reutilizáveis e fácil de testar.
 
